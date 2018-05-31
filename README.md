@@ -26,4 +26,19 @@ A small demo of REST API - Pet Shelter API
   GET /api/pets/1
 
 
-Play with it on [HeroKu](https://henry-pet-shelter-api.herokuapp.com)
+## To set up on a local machine
+
+- Download and Install Node.js https://nodejs.org/en/
+
+- Checkout the latest code https://github.com/henry-wxf/psi.git
+
+- Go to the psi directory and run
+```
+npm install
+npm start
+```
+- Check http://localhost:5000/ to see if the service is running
+- Play with the API endpoints with REST client, like Postman
+
+
+## Play the live instance on [HeroKu](https://henry-pet-shelter-api.herokuapp.com)
