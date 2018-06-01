@@ -8,7 +8,7 @@ describe('Pet Shelter API', function() {
 
     it('GET an index of Pets', function(done) {
         request(app).get('/api/pets').expect(200).end(function(err, res) {
-            const init_pet_number = 6;
+            const init_pet_number = 18;
             expect(res.body).to.have.lengthOf(init_pet_number);
             done();
         });
@@ -31,9 +31,8 @@ describe('Pet Shelter API', function() {
                     "name": "BeauCat",
                     "type": "Cat",
                     "breed": "woloo",
-                    "location": "Regina, SK",
-                    "latitude": 102.33,
-                    "longitude": 89.55
+                    "latitude": 53.330987,
+                    "longitude": -105757135
                 })
                 .expect(200)
                 .end(function(err, res) {
@@ -59,9 +58,8 @@ describe('Pet Shelter API', function() {
                     "name": "",
                     "type": "Cat",
                     "breed": "woloo",
-                    "location": "Regina, SK",
-                    "latitude": 102.33,
-                    "longitude": 89.55
+                    "latitude": 53.330987,
+                    "longitude": -105757135
                 })
                 .expect(400)
                 .end(function(err, res) {

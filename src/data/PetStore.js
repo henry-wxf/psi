@@ -33,18 +33,29 @@ class PetStore {
                 name text NOT NULL,
                 type text NOT NULL,
                 breed text NOT NULL,
-                location text NOT NULL,
                 latitude real NOT NULL,
                 longitude real NOT NULL
        )`;
 
-        const SQL_INSERT = `INSERT INTO pet (name, type, breed, location, latitude, longitude)
-            VALUES ('Ajaxis', 'Dog', 'Beagle', 'Boston, MA', 305.33, 110.67),
-               ('Banshee', 'Dog', 'Brittany', 'Regina, SK', 855.33, 119.67),
-               ('Cosmo', 'Cat', 'Balinese', 'Saskatoon, SK', 905.63, 510.55),
-               ('Daredevil', 'Dog', 'Pointer', 'Toronoto, ON', 355.37, 190.08),
-               ('Groot', 'Cat', 'Sphynx', 'Calgary, AB', 395.38, 110.67),
-               ('Hydra', 'Dog', 'Shiba', 'Edmondon, AB', 405.33, 170.22)`;
+        const SQL_INSERT = `INSERT INTO pet (name, type, breed, latitude, longitude)
+            VALUES ('Ajaxis', 'Dog', 'Beagle', 52.146973, -106.647034),
+               ('Banshee', 'Dog', 'Brittany', 50.453753, -104.614343),
+               ('Cosmo', 'Cat', 'Balinese', 51.017406, -106.344989),
+               ('Daredevil', 'Dog', 'Pointer', 51.639001, -114.612116),
+               ('Groot', 'Cat', 'Sphynx', 53.547338, -113.447565),
+               ('Bansbloe', 'Dog', 'Chrittany', 50.453753, -104.614343),
+               ('Duosmo', 'Cat', 'Wlinose', 51.017406, -106.344989),
+               ('Darbcuil', 'Dog', 'Kiltt', 51.639001, -114.612116),
+               ('Gjaot', 'Cat', 'Monx', 53.547338, -113.447565),
+               ('Tolee', 'Dog', 'Brittany', 50.453753, -104.614343),
+               ('Urrbie', 'Cat', 'Balinese', 58.017406, -116.344989),
+               ('Hooge', 'Dog', 'Pointer', 51.639001, -144.612116),
+               ('Mica', 'Cat', 'Sphynx', 59.547338, -113.447565),
+               ('Julee', 'Dog', 'Chrittany', 50.89753, -108.67843),
+               ('Feling', 'Cat', 'Wlinose', 51.017406, -121.344989),
+               ('Boboo', 'Dog', 'Kiltt', 51.639001, -133.612116),
+               ('Haloo', 'Cat', 'Monx', 68.547338, -113.447565),
+               ('Hydra', 'Dog', 'Shiba', 54.246001, -105.757135)`;
 
         this.db.serialize(() => {
             this.db.run(SQL_CREATE_TABLE, (err) => log(err, 'pet table was created.'))
@@ -81,7 +92,7 @@ class PetStore {
             reject(new InvalidParameter(pet, 'no pet info'));
         }
 
-        ['name', 'type', 'breed', 'location', 'latitude', 'longitude'].forEach(attr => {
+        ['name', 'type', 'breed', 'latitude', 'longitude'].forEach(attr => {
             if (!pet[attr]) {
                 reject(new InvalidParameter(pet, `${attr} is required`));
             }
@@ -95,8 +106,8 @@ class PetStore {
             console.log(`before create pet with %j`, pet);
 
             const _doCreate = (pet, resolve, reject) => {
-                this.db.run(`INSERT INTO pet (name, type, breed, location, latitude, longitude)
-                    VALUES (?, ?, ?, ?, ?, ?)`, [pet.name, pet.type, pet.breed, pet.location, pet.latitude, pet.longitude],
+                this.db.run(`INSERT INTO pet (name, type, breed, latitude, longitude)
+                    VALUES (?, ?, ?, ?, ?)`, [pet.name, pet.type, pet.breed, pet.latitude, pet.longitude],
                     function(err) {
                         if (err) {
                             reject(err);
